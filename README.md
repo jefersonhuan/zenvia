@@ -9,10 +9,6 @@ Add this line to your application's Gemfile:
 ```ruby
 gem 'zenvia', :git => 'https://github.com/jefersonhuan/zenvia'
 ```
-or
-```ruby
-cd zenvia && bin/setup
-```
 
 And then execute:
 
