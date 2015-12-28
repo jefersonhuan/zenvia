@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Zenvia!}
   spec.description   = %q{This gem can be used to send sms through zenvia api}
-  spec.homepage      = "https://github.com/jefersonhuan/zenvia-rb"
+  spec.homepage      = "https://github.com/jefersonhuan/zenvia"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or

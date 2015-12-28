@@ -28,7 +28,7 @@ class Zenvia
                       sendSmsRequest: {
                           from: from,
                           to: to,
-                          schedule: Time.now.strftime("%Y-%m-%dT%H:%M:%S"),
+                          schedule: Time.now.utc.iso8601,
                           msg: message,
                           callbackOption: 'NONE'
                       }
