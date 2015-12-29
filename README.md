@@ -1,7 +1,5 @@
 # Zenvia
 
-Gem to send sms through Zenvia api.
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -27,7 +25,7 @@ In your script
 require 'zenvia'
 
 sms = Zenvia.new(USER, CODE)
-sms.send_message(FROM, NUMBER, TEXT)
+sms.send_message(FROM, NUMBER, TEXT, DELAY=0)
 ```
 
 That's all ;)

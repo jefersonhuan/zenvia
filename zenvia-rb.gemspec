@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["jeferson.hsa@gmail.com"]
 
   spec.summary       = %q{Zenvia!}
-  spec.description   = %q{This gem can be used to send sms through zenvia api}
+  spec.description   = %q{RubyGem to send SMS through Zenvia's api}
   spec.homepage      = "https://github.com/jefersonhuan/zenvia-rb"
   spec.license       = "MIT"
 
