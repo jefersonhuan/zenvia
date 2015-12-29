@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'zenvia-rb', '~> 0.0.1'
+gem 'zenvia-rb', '~> 0.0.2'
 ```
 
 And then execute:
@@ -25,7 +25,7 @@ In your script
 require 'zenvia'
 
 sms = Zenvia.new(USER, CODE)
-sms.send_message(FROM, NUMBER, TEXT, DELAY=0)
+sms.send_message(FROM, NUMBER, TEXT, DELAY_IN_SECONDS=0)
 ```
 
 That's all ;)
