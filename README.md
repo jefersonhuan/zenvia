@@ -7,7 +7,7 @@ Gem to send sms through Zenvia api.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'zenvia', :git => 'https://github.com/jefersonhuan/zenvia'
+gem 'zenvia-rb', '~> 0.0.1'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install zenvia
+    $ gem install zenvia-rb
 
 HTTParty is the only dependency for this gem.
 

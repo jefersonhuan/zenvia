@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'zenvia/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "zenvia"
+  spec.name          = "zenvia-rb"
   spec.version       = Zenvia::VERSION
   spec.authors       = ["Jeferson Huan"]
   spec.email         = ["jeferson.hsa@gmail.com"]
 
   spec.summary       = %q{Zenvia!}
   spec.description   = %q{This gem can be used to send sms through zenvia api}
-  spec.homepage      = "https://github.com/jefersonhuan/zenvia"
+  spec.homepage      = "https://github.com/jefersonhuan/zenvia-rb"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
