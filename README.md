@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'zenvia-rb', '~> 0.0.2'
+gem 'zenvia-rb', '~> 0.0.3'
 ```
 
 And then execute:
@@ -13,7 +13,6 @@ And then execute:
     $ bundle
 
 Or install it yourself as:
-
     $ gem install zenvia-rb
 
 HTTParty is the only dependency for this gem.
@@ -23,7 +22,7 @@ HTTParty is the only dependency for this gem.
 ### Configuration
 In your script
 ```ruby
-
+require 'zenvia'
 Zenvia.configure {|config|
     config.account = account_given_by_zenvia
     config.code = code_given_by_zenvia
@@ -34,11 +33,8 @@ Zenvia.configure {|config|
 
 ### Usage
 ```ruby
-require 'zenvia'
-
 # if from is nil, the sender name will be set as config.name (as above)
 # if you prefer a definitely nil sender, you can set from = ''
-
 sms = Zenvia::SMS.new(from, number, message)
 sms.send_message
 ```

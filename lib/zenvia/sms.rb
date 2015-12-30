@@ -9,7 +9,7 @@ class Zenvia::SMS
   def initialize(from = nil, number, message)
     @from = from.nil? ? Zenvia.config.name : from
     @number = number
-    exit puts 'The number must be composed with just numbers'  unless /\d*/.match(@number)
+    exit puts 'letters and other special chars are not accepted in number parameter' unless /^\d*$/.match(@number)
     @message = message
   end
 
