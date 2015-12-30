@@ -1,13 +1,14 @@
-class Zenvia
+require "zenvia/version"
+require 'zenvia/config'
+require 'zenvia/sms'
+
+module Zenvia
+  # block of configuration
   def self.configure
-    yield Config
+    yield self.config
   end
 
   def self.config
     Config
   end
 end
-
-require "zenvia/version"
-require 'zenvia/config'
-require 'zenvia/sms'
