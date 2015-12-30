@@ -11,4 +11,8 @@ module Zenvia
   def self.config
     Config
   end
+
+  def self.send_message(from = nil, number, message)
+    SMS.send_message(from, number, message)
+  end
 end

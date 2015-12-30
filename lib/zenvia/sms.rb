@@ -5,25 +5,25 @@ module Zenvia
   class SMS
     attr_writer :from, :number, :message
 
-    # initiate SMS object with
+    # function to send the message
     # from: user or enterprise name, number: receiver number, message: text
-    def initialize(from = nil, number, message)
-      @from = from.nil? ? Zenvia.config.from : from
-      @number = number
-      exit puts 'letters and other special chars are not accepted in number parameter' unless /^\d*$/.match(@number)
-      @message = message
-    end
-
-    # send the message itself, calling send_sms method and return api's response
-    def send_message
-      response = send_sms
-      # todo improve returning message with auth error
-      response = JSON.parse(response.body)
-      puts response['sendSmsResponse']['detailDescription']
+    def self.send_message(from = nil, number, message)
+      begin
+        @from = from.nil? ? Zenvia.config.from : from
+        @number = number
+        @message = message
+        response = self.send_sms
+        # todo improve returning message with auth error
+        response = JSON.parse(response.body)
+        puts response['sendSmsResponse']['detailDescription']
+      rescue => e
+        puts 'Error!'
+        raise e
+      end
     end
 
     private
-    def send_sms
+    def self.send_sms
       # convert number to string (if isn't yet) and insert the country code (standard: BR, 55)
       # if not found
       @number = @number.to_s unless @number.class.eql? String

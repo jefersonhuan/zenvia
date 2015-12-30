@@ -19,8 +19,8 @@ HTTParty is the only dependency for this gem.
 
 ## Usage
 
-### Configuration
 In your script
+
 ```ruby
 require 'zenvia'
 
@@ -29,14 +29,8 @@ Zenvia.configure {|config|
     config.code = code_given_by_zenvia
     config.from = user_or_enterprise_name # optional
 }
-```
 
-### Usage
-```ruby
-# if from is nil, the sender name will be equal to config.from
-# if you prefer a definitely-nil sender, you can set from = ''
-sms = Zenvia::SMS.new(from, number, message)
-sms.send_message
+Zenvia.send_message(from = config.from, number, message)
 ```
 
 That's all ;)
