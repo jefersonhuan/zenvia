@@ -11,9 +11,10 @@ module Zenvia
     def self.send_message(from = nil, number, message)
       begin
         @from = from.nil? ? Zenvia.config.from : from
+        @message = message
+        # create numbers array and push onto it number(s) from parameters
         numbers = Array.new
         number.is_a?(Array) ? numbers = number : numbers.push(number)
-        @message = message
         numbers.each do |nb|
           @number = nb
           response = self.send_sms
