@@ -35,6 +35,7 @@ Zenvia.configure {|config|
 # number = area code + number / there's no need to put 55 before them.
 # It's automatically added
 # message = body of the message
+# id = the id of the *sent* message in your system. Nil by default
 
 Zenvia.send_message(from = config.from, number, message)
 
