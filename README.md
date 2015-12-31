@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'zenvia-rb', '~> 0.0.5'
+gem 'zenvia-rb', '~> 0.0.6'
 ```
 
 And then execute:
@@ -30,7 +30,17 @@ Zenvia.configure {|config|
     config.from = user_or_enterprise_name # optional
 }
 
+# from = personal or enterprise name. config.from will be used as default.
+# if you do not want to identify the sender, use from = ''
+# number = area code + number
+# message = body of the message
+
 Zenvia.send_message(from = config.from, number, message)
+
+# alternatively, you can set number parameters equal to an array of numbers - and send the same message to them
+numbers = ['DDNNNNNNNNN', 'DDNNNNNNNNM']
+Zenvia.send_message(from = config.from, numbers, message)
+
 ```
 
 That's all ;)

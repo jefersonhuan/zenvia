@@ -1,5 +1,6 @@
 require 'httparty'
 require 'json'
+require 'timeout'
 
 module Zenvia
   class SMS
@@ -10,12 +11,15 @@ module Zenvia
     def self.send_message(from = nil, number, message)
       begin
         @from = from.nil? ? Zenvia.config.from : from
-        @number = number
+        numbers = Array.new
+        number.is_a?(Array) ? numbers = number : numbers.push(number)
         @message = message
-        response = self.send_sms
-        # todo improve returning message with auth error
-        response = JSON.parse(response.body)
-        puts response['sendSmsResponse']['detailDescription']
+        numbers.each do |nb|
+          @number = nb
+          response = self.send_sms
+          response = JSON.parse(response.body)
+          puts "Response for #{nb}: #{response['sendSmsResponse']['detailDescription']}"
+        end
       rescue => e
         puts 'Error!'
         raise e
@@ -26,7 +30,7 @@ module Zenvia
     def self.send_sms
       # convert number to string (if isn't yet) and insert the country code (standard: BR, 55)
       # if not found
-      @number = @number.to_s unless @number.class.eql? String
+      @number = @number.to_s unless @number.is_a? String
       @number.insert(0, '55') unless /^55/.match(@number)
       # retrieve auth value set in Config class
       @auth = Zenvia.config.auth
