@@ -9,7 +9,7 @@ module Zenvia
   end
 
   def self.config
-    Config
+    @config ||= Config.new
   end
 
   def self.send_message(from = nil, number, message)
