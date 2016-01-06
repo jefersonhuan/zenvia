@@ -7,7 +7,6 @@ module Zenvia
     attr_writer :from, :number, :message
 
     # function to send the message
-    # from: user or enterprise name, number: receiver number, message: text
     def self.send_message(from = nil, number, message)
       begin
         @from = from.nil? ? Zenvia.config.from : from
@@ -35,7 +34,6 @@ module Zenvia
       @number.insert(0, '55') unless /^55/.match(@number)
       # retrieve auth value set in Config class
       @auth = Zenvia.config.auth
-      # Zenvia api's endpoint to send sms
       endpoint = 'https://api-rest.zenvia360.com.br/services/send-sms'
       HTTParty.post(endpoint,
                     body: {

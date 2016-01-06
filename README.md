@@ -13,6 +13,7 @@ And then execute:
     $ bundle
 
 Or install it yourself as:
+
     $ gem install zenvia-rb
 
 HTTParty is the only dependency for this gem.
@@ -30,16 +31,15 @@ Zenvia.configure {|config|
     config.from = user_or_enterprise_name # optional
 }
 
-# from = personal or enterprise name. config.from will be used as default.
+# from = personal or enterprise name. config.from is used as default.
 # if you do not want to identify the sender, use from = ''
 # number = area code + number / there's no need to put 55 before them.
-# It's automatically added
 # message = body of the message
-# id = the id of the *sent* message in your system. Nil by default
 
 Zenvia.send_message(from = config.from, number, message)
 
-# alternatively, you can set number parameter equal to an array of numbers - and send the same message to them
+# alternatively, you can set number parameter equal to an array of numbers
+# and send the same message to them
 numbers = ['DDNNNNNNNNN', 'DDNNNNNNNNM']
 Zenvia.send_message(from = config.from, numbers, message)
 
