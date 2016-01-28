@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'zenvia-rb', '~> 0.0.9'
+gem 'zenvia-rb', '~> 0.0.10'
 ```
 
 And then execute:
