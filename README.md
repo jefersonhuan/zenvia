@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'zenvia-rb', '~> 0.0.8'
+gem 'zenvia-rb', '~> 0.0.9'
 ```
 
 And then execute:
@@ -33,7 +33,8 @@ Zenvia.configure {|config|
 
 # from = personal or enterprise name. config.from is used as default.
 # if you do not want to identify the sender, use from = ''
-# number = area code + number / there's no need to put 55 before them.
+# number = area code + number / there's no need to put 55 before them
+# AND format the number (i.e. remove parentheses, dashes...)
 # message = body of the message
 
 Zenvia.send_message(from = config.from, number, message)
