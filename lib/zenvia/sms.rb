@@ -4,8 +4,6 @@ require 'timeout'
 
 module Zenvia
   class SMS
-    OpenSSL::SSL::SSLContext::DEFAULT_PARAMS[:ssl_version] = 'SSLv3'
-
     attr_writer :from, :number, :message
 
     # function to send the message
