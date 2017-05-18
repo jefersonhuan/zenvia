@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'zenvia-rb', '~> 0.0.10'
+gem 'zenvia-rb', '~> 0.0.11'
 ```
 
 And then execute:
@@ -37,12 +37,12 @@ Zenvia.configure {|config|
 # AND format the number (i.e. remove parentheses, dashes...)
 # message = body of the message
 
-Zenvia.send_message(from = config.from, number, message)
+Zenvia.send_message(number, message, from = config.from)
 
 # alternatively, you can set number parameter equal to an array of numbers
 # and send the same message to them
 numbers = ['DDNNNNNNNNN', 'DDNNNNNNNNM']
-Zenvia.send_message(from = config.from, numbers, message)
+Zenvia.send_message(numbers, message, from = config.from)
 
 ```
 

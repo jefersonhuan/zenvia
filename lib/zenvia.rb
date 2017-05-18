@@ -14,7 +14,7 @@ module Zenvia
   end
 
   # alias for Zenvia::SMS.send_message(*args)
-  def self.send_message(from = nil, number, message)
-    SMS.send_message(from, number, message)
+  def self.send_message(number, message, from = nil)
+    SMS.send_message number, message, from
   end
 end
