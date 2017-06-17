@@ -1,61 +1,107 @@
 # Zenvia
 
-## Installation
+Esta biblioteca -**não oficial**- segue as diretivas da [documentação API REST da Zenvia](http://docs.zenviasms.apiary.io/#introduction/autenticacao). 
 
-Add this line to your application's Gemfile:
+## Instalação
+
+Adicione esta linha ao seu Gemfile
 
 ```ruby
-gem 'zenvia-rb', '~> 0.0.11'
+gem 'zenvia-rb', '~> 0.1.0'
 ```
 
-And then execute:
+E depois execute:
 
     $ bundle
 
-Or install it yourself as:
+Ou instale através do "gem install":
 
     $ gem install zenvia-rb
 
-HTTParty is the only dependency for this gem.
+A única dependência desta Gem é o HTTParty.
 
-## Usage
+## Uso
 
-In your script
+Para usar esta biblioteca, [você vai precisar informar alguns dados](http://docs.zenviasms.apiary.io/#introduction/autenticacao), que são obtidos através da própria Zenvia.
 
 ```ruby
 require 'zenvia'
+  
 
 Zenvia.configure {|config|
-    config.account = account_given_by_zenvia
-    config.code = code_given_by_zenvia
-    config.from = user_or_enterprise_name # optional
+    config.account = 'SUA-CONTA'
+    config.code = 'SEU-CODIGO'
+    config.from = 'NOME-DA-EMPRESA-OU-PESSOA' # opcional
 }
+```
+*Se você pretende usar esta Gem com Rails, insira o snippet acima em config/initializers.*
 
-# from = personal or enterprise name. config.from is used as default.
-# if you do not want to identify the sender, use from = ''
-# number = area code + number / there's no need to put 55 before them
-# AND format the number (i.e. remove parentheses, dashes...)
-# message = body of the message
+Feito isso, [para enviar uma mensagem](http://docs.zenviasms.apiary.io/#reference/servicos-da-api/envio-de-um-unico-sms/testar-envio-de-um-unico-sms), será preciso apenas chamar a função "send_message":
 
-Zenvia.send_message(number, message, from = config.from)
-
-# alternatively, you can set number parameter equal to an array of numbers
-# and send the same message to them
-numbers = ['DDNNNNNNNNN', 'DDNNNNNNNNM']
-Zenvia.send_message(numbers, message, from = config.from)
-
+```ruby
+options = {from: config.from, id: 'SEU-ID', schedule: '2017-07-18T02:01:23'}
+Zenvia.send_message(number, message, options)
+  
+# no hash 'options', você ainda pode inserir o aggregateId. Todos esses valores são opcionais  
+ 
+# Exemplo de resposta:
+{"sendSmsResponse"=>{"statusCode"=>"00", "statusDescription"=>"Ok", "detailCode"=>"000", "detailDescription"=>"Message Sent"}}
 ```
 
-That's all ;)
+Se preferir, você pode definir um array de números e enviar a **mesma** mensagem a eles:
 
-## Development
+```ruby
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+numbers = ['DDNNNNNNNNN', 'DDNNNNNNNNM']
+Zenvia.send_message(numbers, message)
+  
 
-## Contributing
+# Exemplo de resposta
+ 
+[
+  {"sendSmsResponse"=>{"statusCode"=>"00", "statusDescription"=>"Ok", "detailCode"=>"000", "detailDescription"=>"Message Sent"}}, 
+  {"sendSmsResponse"=>{"statusCode"=>"00", "statusDescription"=>"Ok", "detailCode"=>"000", "detailDescription"=>"Message Sent"}}
+]
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jefersonhuan/zenvia-rb
+Ou usar a função nativa do Zenvia, [de enviar múltiplos SMSs](http://docs.zenviasms.apiary.io/#reference/servicos-da-api/envio-de-varios-smss-simultaneamente/testar-envio-de-varios-smss-simultaneamente):
 
+```ruby
+list = [
+ {
+   from: "remetente",
+   to: "555192551015",
+   msg: "uma mensagem",
+   callbackOption: "NONE"
+ },
+ {
+   from: "remetente",
+   to: "555199668010",
+   schedule: "2014-07-18T02:01:23",
+   msg: "outra mensagem",
+   callbackOption: "NONE",
+   id: "004"
+ }
+]  
+  
+
+Zenvia.send_multiple_messages list
+```
+
+Caso tenha definido o ID no envio de uma mensagem, poderá buscar seu status chamando a função "lookup":
+
+```ruby
+id = 'SEU-ID'  
+    
+Zenvia.lookup(id)
+      
+
+# Exemplo de resposta 
+    
+{"sendSmsResponse": {"statusCode": "00", "statusDescription": "Ok", "detailCode": "000", "detailDescription": "Message Sent" }}
+```
+
+Isso é tudo, pessoal!
 
 ## License
 
